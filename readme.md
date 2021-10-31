@@ -18,7 +18,7 @@ Main parameters:​
 - Electrode dimensions (x, y and z)​
 - Target solid volume fraction​
 - Active material particle radius​
-- Carbon black radius
+- Carbon black particle radius
 - Number of carbon black particles per AM particle​
 
 Grading parameters:​
