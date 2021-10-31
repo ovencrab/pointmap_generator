@@ -36,8 +36,23 @@ There is also a separate layering function, but this has been made redundent by 
    2. `load_parameters = 0` to use the modifiable parameters within the *Parameters* sub-section of the script.
 3. Run the script within Matlab.
    1. Coordinates will be saved in *.xlsx* files in the script folder.
-   2. The output will be visualised as shown below.
+   2. The output will be visualised as shown below depending on the `plot_am` and `plot_cb` settings.
 
 ![point_maps_matlab](/assets/point_maps_matlab.png)
 
-Note: the settings `plot_am` and `plot_cb` control the output visualisation in Matlab. If plotting over 1000 CB particles, `plot_cb = 0` is recommended.
+Note: the settings `plot_am` and `plot_cb` control the output visualisation in the Matlab script. If plotting over 1000 CB particles, `plot_cb = 0` is recommended.
+
+## Usage (Part 2: Rendering)
+
+After generating the *.xslx* coordinate files, a 3D image can be rendered in cad software. This section will describe the process using Autodesk Inventor.
+
+1. Create a new part in Inventor.
+2. Import one pointmap file (i.e. *'points_AM_1_of_2.xlsx'*) using *Import Points*. By default the coordinates are in units of *mm*.
+3. On one of the points, sketch a circle with a radius matching that set in the Matlab script parameters.
+4. Rotate the sketch around the central axis to form a sphere
+5. Use sketch driven pattern to replicate the sphere onto all of the other imported points.
+6. Repeat with any other AM pointmaps (i.e. *'points_AM_2_of_2.xlsx'*)
+7. Repeat with CB pointmap, remembering to draw the circle with the correct CB radius from the Matlab script.
+8. Perform any extra appearance edits and combine with any other parts, then render.
+
+![graded_AM_and_CB](assets\graded_AM_and_CB.png)
