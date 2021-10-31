@@ -55,4 +55,4 @@ After generating the *.xslx* coordinate files, a 3D image can be rendered in cad
 7. Repeat with CB pointmap, remembering to draw the circle with the correct CB radius from the Matlab script.
 8. Perform any extra appearance edits and combine with any other parts, then render.
 
-![graded_AM_and_CB](/assets\graded_AM_and_CB.png)
+![graded_AM_and_CB](/assets/graded_AM_and_CB.png)
