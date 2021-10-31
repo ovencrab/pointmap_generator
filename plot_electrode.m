@@ -9,38 +9,46 @@ clc
 
 %% Parameters
 
-% Structure
-layers_total = 1;                       % Number of different AM layers ('grad' for graded)
-grad_dist = [1 0.8 0.6 0.4 0.2 0];      % Ratio of AM1 to AM2 per graded layer
-grad_bins = len(grad_dist);
+load_parameters = 0;
 
-% Dimensions [x y z] and volume fraction
-dim = [100 100 100];                    % [x y z] dimensions
-max_vol_fraction = 0.6;                 % Volume fraction of AM spheres
-attempts = 400000;                      % How many attempts to generate a sphere in the volume
+if load_parameters == 1
+    load default_parameters.mat             % Allows loading of parameters from a .mat file
+else
+    % Structure
+    layers_total = 1;                       % Number of different AM layers ('grad' for graded)
+    grad_dist = [1 0.8 0.6 0.4 0.2 0];      % Ratio of AM1 to AM2 per graded layer
+    grad_bins = length(grad_dist);
 
-% Size of AM spheres, allowable distance
-r_am = 5.5;                             % Radius of AM particles (default: 4.6)
-minDist = r_am * 1.75;                  % def: r_am * 1.75
+    % Dimensions [x y z] and volume fraction
+    dim = [90 90 40];                       % [x y z] dimensions
+    max_vol_fraction = 0.7;                 % Volume fraction of AM spheres
+    attempts = 400000;                      % How many attempts to generate a sphere in the volume
 
-% Carbon black
-cb_gen = 1;                             % 0 = off, 1 = normal, 2 = graded
-cb_location = [1 0 1];                  % [1 0 1] = cb in layer 1 and layer 3 (only used in layered electrodes)
-n_cb_dist = [8 7 6 5 4 3];              % Number of cb on each descretised layer
-cb_grad_bins = len(n_cb_dist);                       % Graded: Number of discrete layers of cb
+    % Size of AM spheres, allowable distance
+    r_am = 5.5;                             % Radius of AM particles (default: 4.6)
+    minDist = r_am * 1.75;                  % def: r_am * 1.75
 
-r_cb = r_am / 6;                        % Radius of carbon particles (default: r_am / 6)
-n_cb = floor(8 * r_am / 5.5);           % Number of carbon particles on AM surface (default: floor(8 * r_am / 5.5);)
-cb_distance = (r_am-(r_cb*0.5))/r_am;   % Percentage distance of cb from centre of AM
-                                        % where 1 is where the surfaces are
-                                        % tangential (default: (r_am-(r_cb*0.5))/r_am))
+    % Carbon black
+    cb_gen = 1;                             % 0 = off, 1 = normal, 2 = graded
+    cb_location = [1 0 1];                  % [1 0 1] = cb in layer 1 and layer 3 (only used in layered electrodes)
+    n_cb_dist = [8 7 6 5 4 3];              % Number of cb on each descretised layer
+    cb_grad_bins = length(n_cb_dist);       % Graded: Number of discrete layers of cb
 
-% Plot settings
-plot_am = 1;
-plot_cb = 0;                            %(WARNING: Very slow if lots of CB (i.e. over 1000))
+    r_cb = r_am / 6;                        % Radius of carbon particles (default: r_am / 6)
+    n_cb = floor(8 * r_am / 5.5);           % Number of carbon particles on AM surface (default: floor(8 * r_am / 5.5);)
+    cb_distance = (r_am-(r_cb*0.5))/r_am;   % Percentage distance of cb from centre of AM
+                                            % where 1 is where the surfaces are
+                                            % tangential (default: (r_am-(r_cb*0.5))/r_am))
 
-% Inventor settings
-units = {'mm'};                         % Required for files imported into Inventor
+    % Plot settings
+    plot_am = 1;
+    plot_cb = 1;                            %(WARNING: Very slow if lots of CB (i.e. over 1000))
+
+    % Inventor settings
+    units = {'mm'};                         % Required for files imported into Inventor
+end
+
+%% Timer
 
 % Start timer
 tTotal = tic;
@@ -123,7 +131,7 @@ tTotalEnd = toc(tTotal);
 
 disp(['Finished in: ',num2str(tTotalEnd),'s'])
 
-clearvars -except layer cb_cent vol_fraction d_am d_cb r_combined vol_fraction_with_cb n_cb
+clearvars -except layer cb_cent vol_fraction d_am d_cb r_combined vol_fraction_with_cb n_cb am_cent
 
 
 
