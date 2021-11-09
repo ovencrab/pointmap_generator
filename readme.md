@@ -1,3 +1,5 @@
+![graded_AM_and_CB](/assets/graded_AM_and_CB.png)
+
 # Point Map generator
 
 This matlab script generates a random 3d point map which roughly estimates the structure of a random film of spherical particles of a certain radius (termed AM particles). The pointmap can be used to render a 3D visualisation in a cad software such as Autodesk Inventor or Solidworks. Since the script was designed to visualise Li-ion electrodes, a secondary pointmap of carbon black particles (termed CB particles) can be generated on the surface of the AM particles. Some reasonably complex electrode compositions can be generated, such as discrete layers of different AM particles, graded composition of AM particles or graded composition of CB particles. The main limitation of the script is that the AM particles have to have the same radius even if there are two or more types.
